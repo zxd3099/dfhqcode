@@ -66,7 +66,7 @@ public class UserController {
         String time = DateUtil.now();
 
         User user = new User(userId, userDTO.getUsername(), userDTO.getInterestNews(),
-                             age, userDTO.getProvince() ,gender, time, time);
+                age, userDTO.getProvince() ,gender, time, time);
         userService.insertUser(user);
 
         // 标记用户登录
@@ -91,7 +91,7 @@ public class UserController {
         }
         if ("success".equals(result.getString("state"))) {
             // 标记用户登录
-            String userId = result.getString("userId");
+            String userId = result.getJSONObject("info").getString("userId");
             StpUtil.login(userId);
 
             // 修改用户登录时间

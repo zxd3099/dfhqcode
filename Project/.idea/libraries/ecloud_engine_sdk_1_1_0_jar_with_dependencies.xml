@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="ecloud-engine-sdk-1.1.0-jar-with-dependencies">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/BusinessServer/lib/ecloud-engine-sdk-1.1.0-jar-with-dependencies.jar!/" />
+      <root url="jar://$PROJECT_DIR$/BusinessServer/lib/ecloud-sdk-ocr-1.5.3-jar-with-dependencies.jar!/" />
+      <root url="jar://$PROJECT_DIR$/BusinessServer/lib/ecloud-sdk-face-1.1.0-jar-with-dependencies.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

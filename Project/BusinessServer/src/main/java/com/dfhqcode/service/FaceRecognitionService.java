@@ -110,17 +110,14 @@ public class FaceRecognitionService {
         JSONObject result = new JSONObject();
         // 活体检测
         JSONObject liveRes = BodyRecognition.livelinessDetect(imageBase64);
-        if("success".equals(liveRes.getString("state")))
-        {
-            if(liveRes.getIntValue("livenessCode") != 1)
-            {
+        if("success".equals(liveRes.getString("state"))) {
+            if(liveRes.getIntValue("livenessCode") != 1) {
                 // 活体检测成功,但检测结果为不是活体
                 result.put("state","error");
                 result.put("info",liveRes.getString("info"));
                 return result;
             }
-        } else
-        {
+        } else {
             // 活体检测失败,可能是网络原因或系统原因
             result.put("state","error");
             result.put("info",liveRes.getString("info"));
@@ -130,8 +127,7 @@ public class FaceRecognitionService {
         // 人脸检测
         JSONObject faceDetectRes = FaceRecognition.faceDetect(imageBase64);
         String faceToken = "";
-        if(!"success".equals(faceDetectRes.getString("state")))
-        {
+        if(!"success".equals(faceDetectRes.getString("state"))) {
             // 人脸检测失败,可能是网络原因或系统原因
             result.put("state","error");
             result.put("info",faceDetectRes.getString("info"));
@@ -141,25 +137,26 @@ public class FaceRecognitionService {
 
         // 查询人脸库的人员列表
         JSONObject faceRes = FaceRecognition.getMemberList(faceStoreId);
-        if("success".equals(faceRes.getString("state")))
-        {
+        if("success".equals(faceRes.getString("state"))) {
             // 查询人脸库的人员列表成功
             JSONArray info = faceRes.getJSONArray("info");
-
-            for(int i = 0 ; i < info.size() ; ++i) {
-                JSONObject jsonObject = info.getJSONObject(i);
-                String userId = jsonObject.getString("id");
-                String faceToken2 = jsonObject.getJSONObject("exDescriptionInfos").getString("faceToken");
-
+            int size = info.size();
+            for(int i = 0 ; i < size ; ++i) {
+                JSONObject jo = info.getJSONObject(i);
+                String userId = jo.getString("id");
+                String faceToken2 = jo.getJSONObject("exDescriptionInfos").getString("faceToken");
+                JSONObject exDescriptionInfos2 = jo.getJSONObject("exDescriptionInfos");
                 // 人脸比对
-                JSONObject matchRes = FaceRecognition.match(faceToken, faceToken2);
-                if("success".equals(matchRes.getString("state")))
-                {
+                JSONObject matchRes = FaceRecognition.match(faceToken,faceToken2);
+                if("success".equals(matchRes.getString("state"))) {
                     // 人脸比对成功
-                    double confidence = matchRes.getJSONObject("info").getDouble("confidence");
-                    if(confidence > confidence) {
+                    double confidence1 = matchRes.getJSONObject("info").getDouble("confidence");
+                    if(confidence1 > confidence) {
                         result.put("state","success");
-                        result.put("userId", userId);
+                        JSONObject info2 = new JSONObject();
+                        info2.put("userId",userId);
+                        info2.put("exDescriptionInfos",exDescriptionInfos2);
+                        result.put("info",info2);
                         return result;
                     }
                 }
@@ -169,8 +166,7 @@ public class FaceRecognitionService {
             result.put("state","error");
             result.put("info","人脸比对不成功");
             return result;
-        } else
-        {
+        } else {
             // 没有得到人脸列表, 系统问题或网络问题
             result.put("state","error");
             result.put("info",faceRes.getJSONObject("info"));

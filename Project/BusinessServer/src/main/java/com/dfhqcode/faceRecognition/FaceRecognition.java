@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.chinamobile.cmss.sdk.face.ECloudDefaultClient;
 import com.chinamobile.cmss.sdk.face.ECloudServerException;
+import com.chinamobile.cmss.sdk.face.http.constant.Region;
+import com.chinamobile.cmss.sdk.face.http.signature.Credential;
 import com.chinamobile.cmss.sdk.face.request.IECloudRequest;
 import com.chinamobile.cmss.sdk.face.request.face.FaceRequestFactory;
 import com.dfhqcode.config.CloudConfig;
@@ -17,7 +19,18 @@ import java.util.Map;
  * @create 2022-06-29-10:00
  */
 public class FaceRecognition {
-    private static ECloudDefaultClient client = CloudConfig.client;
+    public static String user_ak;
+    private static String user_sk;
+    private static ECloudDefaultClient client;
+
+    static {
+
+        user_ak = "7fb8ade4b3354580b3fda59a5f92edf0";
+        user_sk = "a3b199fefaf24a809afad6c4e3061d55";
+
+        Credential credential = new Credential(user_ak, user_sk);
+        client = new ECloudDefaultClient(credential, Region.POOL_SZ);
+    }
 
     /**
      * 创建人脸，向人脸库中添加记录
@@ -71,23 +84,24 @@ public class FaceRecognition {
 
     /**
      * 人脸比对，如果人脸比对置信度为0.735，可以认为是同一人
-     * @param imgBase641
-     * @param imgBase642
+     * @param img1
+     * @param img2
      * @return
      * @throws IOException
      */
-    public static JSONObject match(String imgBase641, String imgBase642) throws IOException{
+    public static JSONObject match(String img1, String img2) throws IOException{
         JSONObject params = new JSONObject();
-        params.put("image1",imgBase641);
-        params.put("imageType1", "BASE64");
-        params.put("image2", imgBase642);
-        params.put("imageType2", "BASE64");
+        params.put("image1",img1);
+        params.put("imageType1", "FACE_TOKEN");
+        params.put("image2", img2);
+        params.put("imageType2", "FACE_TOKEN");
 
         IECloudRequest request = FaceRequestFactory.getFaceRequest("/api/human/face/v1/match", params);
         JSONObject res  = new JSONObject();
 
         try{
             JSONObject response =(JSONObject) client.call(request);
+
             if("OK".equals(response.getString("state")))
             {
                 JSONObject confidence = new JSONObject();

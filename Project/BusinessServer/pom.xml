@@ -79,21 +79,7 @@
             <version>${sa_token.version}</version>
         </dependency>
         <!--引入jar包所在的目录-->
-        <dependency>
-            <groupId>com.chinamobile.ecloud</groupId>
-            <artifactId>ecloud-engine-sdk</artifactId>
-            <version>1.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.chinamobile.ecloud</groupId>
-            <artifactId>ecloud-sdk-face</artifactId>
-            <version>1.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.chinamobile.ecloud</groupId>
-            <artifactId>ecloud-sdk-ocr</artifactId>
-            <version>1.5.3</version>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

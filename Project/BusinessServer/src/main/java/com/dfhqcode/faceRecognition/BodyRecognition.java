@@ -2,7 +2,10 @@ package com.dfhqcode.faceRecognition;
 
 import com.alibaba.fastjson.JSONObject;
 import com.chinamobile.cmss.sdk.face.ECloudServerException;
+import com.chinamobile.cmss.sdk.image.ECloudDefaultClient;
 import com.chinamobile.cmss.sdk.image.IECloudClient;
+import com.chinamobile.cmss.sdk.image.http.constant.Region;
+import com.chinamobile.cmss.sdk.image.http.signature.Credential;
 import com.chinamobile.cmss.sdk.image.request.EngineImageLivenessDetectPostRequest;
 import com.chinamobile.cmss.sdk.image.request.EngineImagePersonDetectPostRequest;
 import com.chinamobile.cmss.sdk.image.response.EngineImageLivenessDetectResponse;
@@ -20,7 +23,17 @@ import java.util.List;
  * @create 2022-06-29-11:05
  */
 public class BodyRecognition {
-    private static IECloudClient client = (IECloudClient) CloudConfig.client;
+    public static String user_ak;
+    private static String user_sk;
+    private static IECloudClient ecloudClient;
+    static {
+
+        user_ak = "7fb8ade4b3354580b3fda59a5f92edf0";
+        user_sk = "a3b199fefaf24a809afad6c4e3061d55";
+
+        Credential credential = new Credential(user_ak, user_sk);
+        ecloudClient = new ECloudDefaultClient(credential, Region.POOL_SZ);
+    }
 
     /**
      * 人体识别-人体检测与属性识别
@@ -35,7 +48,7 @@ public class BodyRecognition {
 
         JSONObject res = new JSONObject();
         try{
-            EngineImagePersonDetectResponse response = client.call(request);
+            EngineImagePersonDetectResponse response = ecloudClient.call(request);
             if("OK".equals(response.getState()))
             {
                 List<EnginePerson> body = response.getBody();
@@ -70,7 +83,7 @@ public class BodyRecognition {
 
         JSONObject res = new JSONObject();
         try{
-            EngineImageLivenessDetectResponse response = client.call(request);
+            EngineImageLivenessDetectResponse response = ecloudClient.call(request);
             if("OK".equals(response.getState()))
             {
                 EngineLiveness body = response.getBody();
