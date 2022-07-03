@@ -32,7 +32,8 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select() // 通过.select()方法，去配置扫描接口
-                .apis(RequestHandlerSelectors.basePackage("com.dfhqcode.controller")) // RequestHandlerSelectors配置如何扫描接口
+                // RequestHandlerSelectors配置如何扫描接口
+                .apis(RequestHandlerSelectors.basePackage("com.dfhqcode.controller"))
                 .build();
 
     }
@@ -47,7 +48,7 @@ public class SwaggerConfig {
                 "BUYess",
                 "BUYess",
                 "v1.0",
-                "http://terms.service.url/组织链接",
+                "https://terms.service.url/组织链接",
                 contact,
                 "Apach 2.0 许可",
                 "许可链接",

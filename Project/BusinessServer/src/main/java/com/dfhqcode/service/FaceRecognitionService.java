@@ -38,27 +38,27 @@ public class FaceRecognitionService {
         JSONObject result = new JSONObject();
         // 活体检测
         JSONObject liveRes = BodyRecognition.livelinessDetect(imageBase64);
-        if ("success".equals(liveRes.getString("state"))) {
-            if (liveRes.getIntValue("livenessCode") != 1) {
+        if("success".equals(liveRes.getString("state"))) {
+            if(liveRes.getIntValue("livenessCode") != 1) {
                 // 活体检测成功,但检测结果不是活体
-                result.put("state", "error");
-                result.put("info", liveRes.getString("info"));
+                result.put("state","error");
+                result.put("info",liveRes.getString("info"));
                 return result;
             }
         } else {
             // 活体检测失败,系统问题或网络问题
-            result.put("state", "error");
-            result.put("info", liveRes.getString("info"));
+            result.put("state","error");
+            result.put("info",liveRes.getString("info"));
             return result;
         }
 
         // 人脸检测
         JSONObject faceDetectRes = FaceRecognition.faceDetect(imageBase64);
         String faceToken = "";
-        if (!"success".equals(faceDetectRes.getString("state"))) {
+        if(!"success".equals(faceDetectRes.getString("state"))) {
             // 人脸检测失败,系统问题或网络问题
-            result.put("state", "error");
-            result.put("info", faceDetectRes.getString("info"));
+            result.put("state","error");
+            result.put("info",faceDetectRes.getString("info"));
             return result;
         }
         faceToken = faceDetectRes.getJSONObject("info").getString("faceToken");
@@ -67,14 +67,14 @@ public class FaceRecognitionService {
         // 人体识别-人体检测与属性识别
         JSONObject exInfo = new JSONObject();
 
-        Map<String, String> exDescriptionInfos = new HashMap<>(10);
+        Map<String,String> exDescriptionInfos = new HashMap<>();
         JSONObject sigRes = BodyRecognition.personDetect(imageBase64);
         if ("success".equals(sigRes.getString("state"))) {
             // 人体识别成功,从人脸中获得人员的exInfo
             exInfo = sigRes.getJSONObject("info");
-            exDescriptionInfos.put("age", exInfo.getString("age"));
-            exDescriptionInfos.put("gender", exInfo.getString("gender"));
-            exDescriptionInfos.put("faceToken", faceToken);
+            exDescriptionInfos.put("age",exInfo.getString("age"));
+            exDescriptionInfos.put("gender",exInfo.getString("gender"));
+            exDescriptionInfos.put("faceToken",faceToken);
         } else {
             // 人体识别失败,系统问题或网络问题
             result = sigRes;
@@ -88,12 +88,13 @@ public class FaceRecognitionService {
             result.put("state","success");
             JSONObject info = new JSONObject();
             info.put("userId", faceRes.getJSONObject("info").getString("id"));
-            result.put("info", info);
+            info.put("exDescriptionInfos", exDescriptionInfos);
+            result.put("info",info);
             return result;
         } else {
             // 创建人员失败,系统问题或网络问题
-            result.put("state", "error");
-            result.put("info", faceRes.getString("info"));
+            result.put("state","error");
+            result.put("info",faceRes.getString("info"));
             return result;
         }
     }

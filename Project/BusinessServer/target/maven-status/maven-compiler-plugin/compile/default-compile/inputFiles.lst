@@ -5,9 +5,11 @@ C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\model\dto\ClickDTO.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\config\CloudConfig.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\model\dto\LikeCollectionDTO.java
+C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\config\TomcatConfig.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\controller\UserController.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\config\SwaggerConfig.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\service\FaceRecognitionService.java
+C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\service\FeedbackService.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\exception\ServiceException.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\model\dto\AdminDTO.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\service\UserActionService.java
@@ -17,14 +19,19 @@ C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\controller\UserActionController.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\controller\AdministratorController.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\model\entity\UserClick.java
+C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\service\OCRService.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\faceRecognition\FaceRecognition.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\service\AdministratorService.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\handler\GlobalResponseBodyHandler.java
+C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\config\WebSocketConfig.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\handler\GlobalExceptionHandler.java
+C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\ocr\OCR.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\model\dto\UserDTO.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\faceRecognition\BodyRecognition.java
+C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\controller\OCRController.java
+C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\model\entity\Feedback.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\model\entity\UserCollection.java
-C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\model\entity\OperationLog.java
+C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\model\dto\FeedbackDTO.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\component\StpInterfaceImpl.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\service\UserService.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\model\entity\Administrator.java
@@ -32,3 +39,4 @@ C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\model\dto\JsonResult.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\controller\NewsController.java
 C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\exception\ServiceExceptionEnum.java
+C:\Users\HP\Desktop\workplace\Project\BusinessServer\src\main\java\com\dfhqcode\model\dto\ConclusionDTO.java

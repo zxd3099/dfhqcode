@@ -28,12 +28,6 @@ public class ClickDTO {
     private String newsId;
 
     /**
-     * 页内是否点击
-     */
-    @ApiModelProperty(value = "页内是否操作", example = "true", required = true)
-    private Boolean isOperate;
-
-    /**
      * 页面停留时间
      */
     @ApiModelProperty(value = "页面停留时间", example = "123", required = true)
@@ -48,6 +42,6 @@ public class ClickDTO {
 
     public UserClick transform()
     {
-        return new UserClick(userId, newsId, isOperate, timeOnPage, clickTime);
+        return new UserClick(userId, newsId, timeOnPage, clickTime);
     }
 }

@@ -11,9 +11,11 @@ import com.dfhqcode.service.UserActionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author zxd3099
@@ -58,10 +60,13 @@ public class UserActionController {
 
     @PostMapping("/cancelLike")
     @ApiOperation(value = "用户取消点赞操作")
-    public JsonResult<Object> like(@RequestParam String userId, @RequestParam String newsId)
+    public JsonResult<Object> cancelLike(@RequestParam String userId, @RequestParam String newsId)
     {
-        userActionService.RemoveUserLike(userId, newsId);
-        return JsonResult.success("取消点赞成功");
+        Boolean result = userActionService.RemoveUserLike(userId, newsId);
+        if (result == true) {
+            return JsonResult.success("取消点赞成功");
+        }
+        return JsonResult.invalidReq("已经取消点赞");
     }
 
     @PostMapping("/collect")
@@ -87,7 +92,21 @@ public class UserActionController {
     @ApiOperation(value = "用户取消点赞操作")
     public JsonResult<Object> cancelCollection(@RequestParam String userId, @RequestParam String newsId)
     {
-        userActionService.removeUserCollection(userId, newsId);
-        return JsonResult.success("取消收藏成功");
+        Boolean result = userActionService.removeUserCollection(userId, newsId);
+        if (result == true) {
+            return JsonResult.success("取消收藏成功");
+        }
+        return JsonResult.invalidReq("已经取消收藏");
+    }
+
+    @GetMapping("/listCollections")
+    @ApiOperation(value = "用户列出收藏列表")
+    public JsonResult<Object> listCollections(@RequestParam String userId)
+    {
+        List<UserCollection> result = userActionService.listCollections(userId);
+        if (CollectionUtils.isEmpty(result)) {
+            return JsonResult.invalidReq("收藏列表为空");
+        }
+        return JsonResult.success(result, "展示收藏列表成功");
     }
 }

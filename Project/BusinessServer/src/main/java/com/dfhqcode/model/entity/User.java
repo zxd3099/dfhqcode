@@ -32,12 +32,36 @@ public class User implements Serializable {
      * 用户名
      */
     @ApiModelProperty("用户名")
+    @Field("user_name")
     private String userName;
 
     /**
      * 用户感兴趣的新闻类别
      */
+    @ApiModelProperty("用户感兴趣的新闻类别")
+    @Field("interest_news")
     private List<Integer> interestNews;
+
+    /**
+     * 用户年龄
+     */
+    @ApiModelProperty("用户年龄")
+    @Field("age")
+    private Integer age;
+
+    /**
+     * 用户所属省份
+     */
+    @ApiModelProperty("省份")
+    @Field("province")
+    private String province;
+
+    /**
+     * 用户性别
+     */
+    @ApiModelProperty("用户性别")
+    @Field("gender")
+    private String gender;
 
     /**
      * 最近一次登录时间

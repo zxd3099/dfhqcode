@@ -34,14 +34,14 @@ public class SaTokenConfig implements WebMvcConfigurer {
                     "/error",
                     "/sso/**",
                     "/webjars/**",
-                    "/",
-                    "/csrf",
                     "/administrator/login",
                     "/administrator/register",
                     "/user/register",
                     "/user/login",
                     "/news/**",
-                    "/userAction/**"
+                    "/userAction/**",
+                    "/",
+                    "/csrf"
             ), StpUtil::checkLogin);
 
             // 角色认证 -- 拦截以 administrator 开头的路由，必须具备 admin 角色才可以通过认证

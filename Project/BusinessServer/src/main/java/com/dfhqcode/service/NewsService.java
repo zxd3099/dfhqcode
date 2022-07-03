@@ -64,25 +64,6 @@ public class NewsService {
     }
 
     /**
-     * 根据作者查找资讯
-     * @param date 日期
-     * @param authorName 作者姓名
-     */
-    public List<News> findByAuthor(String authorName, String date, Pageable pageable, String key, int order)
-    {
-        // 定位到数据库的Collection
-        String collectionName = prefix + date;
-
-        // 准确查询
-        Query query = new Query();
-        Criteria criteria = Criteria.where("author").is(authorName);
-        query.addCriteria(criteria);
-        query = attachQuery(query, pageable, key, order);
-
-        return template.find(query, News.class, collectionName);
-    }
-
-    /**
      * 按照新闻类别查找新闻
      * @param date
      * @param categoryId
@@ -131,12 +112,12 @@ public class NewsService {
         for (int i = 0; i < 10; ++i) {
             String collectionName = prefix + DateUtil.format(DateUtil.offsetDay(time, -i), "yyyy_MM_dd");
             Query query = new Query(Criteria.where("_id").is(newsId));
-            return template.findOne(query, News.class, collectionName);
+            News news = template.findOne(query, News.class, collectionName);
+            if (news != null) {
+                return news;
+            }
         }
         return null;
     }
 
-    public static void main(String[] args) {
-        System.out.println(DateUtil.now());
-    }
 }

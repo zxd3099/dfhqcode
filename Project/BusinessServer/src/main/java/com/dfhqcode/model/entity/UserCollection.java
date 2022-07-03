@@ -39,6 +39,13 @@ public class UserCollection {
     private String title;
 
     /**
+     * 新闻作者
+     */
+    @Field("author")
+    @ApiModelProperty("新闻作者")
+    private String author;
+
+    /**
      * 类别ID
      */
     @Field("category_id")
@@ -55,7 +62,7 @@ public class UserCollection {
     /**
      * 发布时间
      */
-    @Field("time")
+    @Field("release_time")
     @ApiModelProperty("发布时间")
     private String time;
 
@@ -73,5 +80,9 @@ public class UserCollection {
         this.newsId = news.getId();
         this.categoryId = news.getCategoryId();
         this.content = news.getContent();
+        this.author = news.getAuthor();
+        this.time = news.getTime();
     }
+
+    public UserCollection() {}
 }

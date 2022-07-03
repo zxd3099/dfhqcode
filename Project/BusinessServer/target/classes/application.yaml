@@ -3,6 +3,9 @@ spring:
     mongodb:
       host: 47.97.197.43
       port: 27017
+      username: lyf2121
+      password: 'Hxq71ppHzdfwe718'
+      authentication-database: admin
       database: BUyess
   mvc:
     pathmatch:
@@ -12,6 +15,11 @@ server:
   port: 8090
   servlet:
     context-path: /BUyess
+  ssl:
+    key-store: classpath:8044285_www.dfhqcode.cn.pfx
+    key-store-password: 6guqc4ky
+    key-store-type: PKCS12
+    enabled: true
 
 # Sa-Token
 sa-token:

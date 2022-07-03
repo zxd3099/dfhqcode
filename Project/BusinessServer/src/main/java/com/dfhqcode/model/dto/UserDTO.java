@@ -32,4 +32,10 @@ public class UserDTO {
      */
     @ApiModelProperty(value = "用户感兴趣的新闻类别", example = "[0, 4, 6]", required = false)
     private List<Integer> interestNews;
+
+    /**
+     * 用户所在城市
+     */
+    @ApiModelProperty(value = "用户所在省份", example = "湖北省", required = true)
+    private String province;
 }

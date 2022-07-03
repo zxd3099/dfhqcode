@@ -3,11 +3,14 @@ package com.dfhqcode.service;
 import com.dfhqcode.model.entity.UserClick;
 import com.dfhqcode.model.entity.UserCollection;
 import com.dfhqcode.model.entity.UserLike;
+import com.mongodb.client.result.DeleteResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author zxd3099
@@ -53,24 +56,34 @@ public class UserActionService {
      * 用户收藏集合删除数据
      * @param userId
      * @param newsId
+     * @return  是否删除成功
      */
-    public void removeUserCollection(String userId, String newsId)
+    public Boolean removeUserCollection(String userId, String newsId)
     {
         Query query = new Query(Criteria.where("user_id").is(userId)
                 .and("news_id").is(newsId));
-        template.remove(query, CollectionName2);
+        DeleteResult result = template.remove(query, CollectionName2);
+        if (result.getDeletedCount() > 0) {
+            return true;
+        }
+        return false;
     }
 
     /**
      * 用户点赞集合删除数据
      * @param userId
      * @param newsId
+     * @return  是否删除成功
      */
-    public void RemoveUserLike(String userId, String newsId)
+    public Boolean RemoveUserLike(String userId, String newsId)
     {
         Query query = new Query(Criteria.where("user_id").is(userId)
                                         .and("news_id").is(newsId));
-        template.remove(query, CollectionName3);
+        DeleteResult result = template.remove(query, CollectionName3);
+        if (result.getDeletedCount() > 0) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -84,4 +97,14 @@ public class UserActionService {
         template.remove(query, CollectionName3);
     }
 
+    /**
+     * 列出指定用户的所有收藏记录
+     * @param userId
+     * @return
+     */
+    public List<UserCollection> listCollections(String userId)
+    {
+        Query query = new Query(Criteria.where("user_id").is(userId));
+        return template.find(query, UserCollection.class, CollectionName2);
+    }
 }

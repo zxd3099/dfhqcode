@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
-
 /**
  * @author zxd3099
  * @create 2022-06-29-19:40
@@ -21,7 +20,7 @@ public class UserService {
     /**
      * 集合名称
      */
-    private String CollectionName = "User";
+    private final String CollectionName = "User";
 
     /**
      * 向集合中添加数据

@@ -34,13 +34,6 @@ public class UserClick implements Serializable {
     private String newsId;
 
     /**
-     * 页内是否点击
-     */
-    @Field("operate")
-    @ApiModelProperty("页内是否操作")
-    private Boolean isOperate;
-
-    /**
      * 页面停留时间
      */
     @Field("time_on_page")
