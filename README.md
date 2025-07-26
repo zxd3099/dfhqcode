@@ -1,2 +1,1 @@
-# dfhqcode
-视障人士友好资讯软件
+# Visually Impaired-Friendly Information App
